@@ -1,17 +1,28 @@
 package com.vlu.Nhom07;
 
 public class Todo {
+
   public Todo() {
     this.title = "";
     this.description = "";
     this.content = "";
   }
 
-  public Todo(String title, String description, String content) {
+  public Todo(String title, String description, String content) throws InvalidTextSizeException {
+    if (title.length() < MIN_TITLE_LENGTH || title.length() > MAX_TITLE_LENGTH) {
+      throw new InvalidTextSizeException(MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
+    }
+    if (description.length() > MAX_DESC_LENGTH) {
+      throw new InvalidTextSizeException(0, MAX_DESC_LENGTH);
+    }
     this.title = title;
     this.description = description;
     this.content = content;
   }
+
+  private final int MIN_TITLE_LENGTH = 5;
+  private final int MAX_TITLE_LENGTH = 20;
+  private final int MAX_DESC_LENGTH = 50;
 
   private String title;
 
@@ -19,7 +30,10 @@ public class Todo {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(String title) throws InvalidTextSizeException {
+    if (title.length() < MIN_TITLE_LENGTH || title.length() > MAX_TITLE_LENGTH) {
+      throw new InvalidTextSizeException(MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
+    }
     this.title = title;
   }
 
@@ -29,7 +43,10 @@ public class Todo {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(String description) throws InvalidTextSizeException {
+    if (description.length() > MAX_DESC_LENGTH) {
+      throw new InvalidTextSizeException(0, MAX_DESC_LENGTH);
+    }
     this.description = description;
   }
 
@@ -41,5 +58,14 @@ public class Todo {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public static class InvalidTextSizeException extends Exception {
+    public InvalidTextSizeException(int range, int range2) {
+      super(
+          String.format(
+              "Expected text size to be in range [%d, %d] characters",
+              Math.min(range, range2), Math.max(range, range2)));
+    }
   }
 }
