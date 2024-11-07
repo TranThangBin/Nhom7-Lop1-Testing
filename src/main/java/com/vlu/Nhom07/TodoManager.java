@@ -43,6 +43,10 @@ public class TodoManager {
     this.todos.remove(id);
   }
 
+  public Boolean exist(String id) {
+    return this.todos.containsKey(id);
+  }
+
   public Todo getTodoById(String id) {
     return this.todos.get(id);
   }

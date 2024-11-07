@@ -3,18 +3,22 @@ package com.vlu.Nhom07;
 public class Todo {
 
   public Todo() {
-    this.title = "";
-    this.description = "";
+    this.title = "Untitled";
+    this.description = "Description is not provided";
     this.content = "";
   }
 
   public Todo(String title, String description, String content) throws InvalidTextSizeException {
+    title = title.trim();
+    description = description.trim();
+
     if (title.length() < MIN_TITLE_LENGTH || title.length() > MAX_TITLE_LENGTH) {
       throw new InvalidTextSizeException(MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
     }
     if (description.length() > MAX_DESC_LENGTH) {
       throw new InvalidTextSizeException(0, MAX_DESC_LENGTH);
     }
+
     this.title = title;
     this.description = description;
     this.content = content;
@@ -31,6 +35,7 @@ public class Todo {
   }
 
   public void setTitle(String title) throws InvalidTextSizeException {
+    title = title.trim();
     if (title.length() < MIN_TITLE_LENGTH || title.length() > MAX_TITLE_LENGTH) {
       throw new InvalidTextSizeException(MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
     }
@@ -44,6 +49,7 @@ public class Todo {
   }
 
   public void setDescription(String description) throws InvalidTextSizeException {
+    description = description.trim();
     if (description.length() > MAX_DESC_LENGTH) {
       throw new InvalidTextSizeException(0, MAX_DESC_LENGTH);
     }
@@ -57,7 +63,7 @@ public class Todo {
   }
 
   public void setContent(String content) {
-    this.content = content;
+    this.content = content.trim();
   }
 
   public static class InvalidTextSizeException extends Exception {
