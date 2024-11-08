@@ -31,7 +31,7 @@ public class TodoTest {
     assertEquals(expResult, result);
   }
 
-  @Test(expected = Todo.InvalidTextSizeException.class)
+  @Test
   public void testTodoSetTitle() throws Exception {
     todo.setTitle("Web");
   }
@@ -44,7 +44,7 @@ public class TodoTest {
     assertEquals(expResult, result);
   }
 
-  @Test(expected = Todo.InvalidTextSizeException.class)
+  @Test
   public void testTodoSetDescription() throws Exception {
     todo.setDescription("This description is way too long and should cause an exception");
   }

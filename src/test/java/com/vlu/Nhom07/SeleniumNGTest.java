@@ -1,10 +1,13 @@
 package com.vlu.Nhom07;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
+
+import java.time.Duration;
 
 import static org.testng.Assert.*;
 
@@ -154,22 +157,25 @@ public class SeleniumNGTest {
   }
 
   @Test
-  public void testSubmit01() {
-    WebElement btnSubmit = driver.findElement(By.id("submit"));
+  public void testRequiredField() throws Exception {
+    JavascriptExecutor executor = (JavascriptExecutor) driver;
 
-    String unexpResult = "red";
-    String result = btnSubmit.getCssValue("background-color");
+    String firstname = "Nguyễn";
+    String lastname = "Văn A";
+    String phoneNumber = "0123456789";
 
-    assertNotEquals(result, unexpResult);
-  }
+    driver.findElement(By.id("firstName")).sendKeys(firstname);
+    driver.findElement(By.id("lastName")).sendKeys(lastname);
+    driver.findElement(By.id("userNumber")).sendKeys(phoneNumber);
 
-  @Test
-  public void testSubmit02() {
-    WebElement btnSubmit = driver.findElement(By.id("submit"));
-    btnSubmit.click();
+    WebElement maleRadioBtn = driver.findElement(By.cssSelector("input[value='Male']"));
+    executor.executeScript("arguments[0].click()", maleRadioBtn);
+
+    WebElement submitBtn = driver.findElement(By.id("submit"));
+    executor.executeScript("arguments[0].click()", submitBtn);
 
     WebElement unexpResult = null;
-    WebElement result = driver.findElement(By.className("modal-dialog"));
+    WebElement result = driver.findElement(By.className("modal-content"));
 
     assertNotEquals(result, unexpResult);
   }

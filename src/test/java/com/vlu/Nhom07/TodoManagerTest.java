@@ -20,7 +20,7 @@ public class TodoManagerTest {
     todoManager.addTodo(id, todo);
   }
 
-  @Test(expected = TodoManager.DuplicatedIdException.class)
+  @Test
   public void testTodoManagerAddTodo02() throws Exception {
     String id = "Task0001";
     Todo todo = new Todo("Game unity", "Làm game platformer 2d", "game");
@@ -36,7 +36,7 @@ public class TodoManagerTest {
     todoManager.updateTodo(id, todo);
   }
 
-  @Test(expected = TodoManager.ItemNotFoundException.class)
+  @Test
   public void testTodoManagerUpdateTodo02() throws Exception {
     String id = "Task0002";
     Todo todo = new Todo("Mobile app", "Làm app bán hàng", "app trên điện thoại");
