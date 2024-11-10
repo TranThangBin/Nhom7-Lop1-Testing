@@ -1,6 +1,7 @@
 package com.vlu.Nhom07;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 
@@ -10,12 +11,13 @@ import java.nio.charset.Charset;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(TaskManagerTest.TaskManagerTestWatcher.class)
 class TaskManagerTest {
 
   private static FileWriter writer;
   private static TaskManager taskManager;
 
-  public static class TaskTestWatcher implements TestWatcher {
+  public static class TaskManagerTestWatcher implements TestWatcher {
     @Override
     public void testSuccessful(ExtensionContext context) {
       try {
@@ -96,14 +98,11 @@ class TaskManagerTest {
   }
 
   @Test
-  void test_updateTask_02() throws Exception {
-    taskManager.addTask(
-        "task102", new Task("Interview", "Interview for a job", "I need to prepare"));
-
+  void test_updateTask_02() {
     assertThrows(
-        TaskManager.DuplicatedIdException.class,
+        TaskManager.ItemNotFoundException.class,
         () -> {
-          taskManager.updateTask("task101", new Task());
+          taskManager.updateTask("task102", new Task());
         });
   }
 

@@ -11,7 +11,7 @@ public class TaskManager {
   }
 
   private static class TaskItem {
-    private final Task task;
+    private Task task;
     private final Calendar createdAt;
     private Calendar updatedAt;
 
@@ -55,6 +55,7 @@ public class TaskManager {
       throw new ItemNotFoundException(id);
     }
     TaskItem target = this.tasks.get(id);
+    target.task = task;
     target.updatedAt = Calendar.getInstance();
     this.tasks.put(id, target);
   }
@@ -67,7 +68,11 @@ public class TaskManager {
   }
 
   public Task getTaskById(String id) {
-    return this.tasks.get(id).task;
+    TaskItem item = this.tasks.get(id);
+    if (item != null) {
+      return item.task;
+    }
+    return null;
   }
 
   public Calendar getCreatedDate(String id) {
