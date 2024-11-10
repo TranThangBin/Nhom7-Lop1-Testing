@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
-import java.time.Duration;
-
 import static org.testng.Assert.*;
 
 public class SeleniumNGTest {
@@ -61,7 +59,14 @@ public class SeleniumNGTest {
   }
 
   @Test
-  public void testGenderWrapper() {}
+  public void testGenderWrapper() {
+    WebElement checkGenderRadio1 = driver.findElement(By.id("gender-radio-1"));
+
+    String expResult = "true";
+    String result = checkGenderRadio1.getAttribute("checked");
+
+    assertEquals(result, expResult);
+  }
 
   @Test
   public void testUserNumber() {
