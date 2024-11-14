@@ -52,7 +52,7 @@ class TaskTest {
     Task task = new Task();
 
     String expectedTitle = "Untitled";
-    String expectedDesc = "Description is not provided";
+    String expectedDesc = "Description is nt provided";
     String expectedContent = "";
 
     String actualTitle = task.getTitle();
@@ -70,7 +70,7 @@ class TaskTest {
         new Task(
             "Web Design",
             "Let's design some webpage",
-            "We should do this at the end of the semester");
+            "We should do this at the ed of the semester");
 
     String expectedTitle = "Web Design";
     String expectedDesc = "Let's design some webpage";
@@ -164,7 +164,8 @@ class TaskTest {
   @Test
   public void test_setDesc_01() throws Exception {
     Task task =
-        new Task( "Programming", "Build program and solve problem", "Learn data structure and algorithm");
+        new Task(
+            "Programming", "Build program and solve problem", "Learn data structure and algorithm");
 
     task.setDescription("Solving business problem");
 

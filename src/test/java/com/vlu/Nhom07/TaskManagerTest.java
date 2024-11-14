@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(TaskManagerTest.TaskManagerTestWatcher.class)
 class TaskManagerTest {
 
-  private static FileWriter writer;
   private static TaskManager taskManager;
+  private static FileWriter writer;
 
   public static class TaskManagerTestWatcher implements TestWatcher {
     @Override
@@ -60,7 +60,7 @@ class TaskManagerTest {
 
     taskManager.addTask("task001", expectedTask);
 
-    Task actualTask = taskManager.getTaskById("task001");
+    Task actualTask = taskManager.getTaskById("task01");
 
     assertEquals(expectedTask.getTitle(), actualTask.getTitle());
     assertEquals(expectedTask.getDescription(), actualTask.getDescription());
@@ -90,7 +90,7 @@ class TaskManagerTest {
 
     taskManager.updateTask("task101", expectedTask);
 
-    Task actualTask = taskManager.getTaskById("task101");
+    Task actualTask = taskManager.getTaskById("task11");
 
     assertEquals(expectedTask.getTitle(), actualTask.getTitle());
     assertEquals(expectedTask.getDescription(), actualTask.getDescription());
